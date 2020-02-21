@@ -96,8 +96,37 @@ class SortingRobot:
         """
         Sort the robot's list.
         """
-        # Fill this out
-        pass
+        # Bubble sort.
+        # compare 1st item to 2nd. larger number is moved right
+        self.set_light_on()
+
+        while self.light_is_on() == True:
+            self.set_light_off()
+
+            while self.can_move_right():
+                # get item
+                self.swap_item()
+                self.move_right()
+                # compare to item on right
+                if self.compare_item() == 1:
+                    self.swap_item()
+                    self.set_light_on()
+                self.move_left()
+                self.swap_item()
+                self.move_right()
+
+            # Vise versa!
+            while self.can_move_left():
+                self.swap_item()
+                self.move_left()
+                if self.compare_item() == -1:
+                    self.swap_item()
+                    self.set_light_on()
+                self.move_right()
+                self.swap_item()
+                self.move_left()
+
+        return self._list
 
 
 if __name__ == "__main__":
